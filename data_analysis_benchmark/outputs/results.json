@@ -1,0 +1,269 @@
+{
+  "pygamlab_version": "2.0.1",
+  "datasets": {
+    "DSC": "/Users/Dakota/Downloads/DSC-NonIsothermal.xlsx",
+    "PL": "/Users/Dakota/Downloads/pl_data.xlsx",
+    "NMR": "/Users/Dakota/Downloads/nmr_data.xlsx",
+    "AES": "/Users/Dakota/Downloads/aes.xlsx"
+  },
+  "accuracy_metrics": [
+    "absolute_error",
+    "rmsd",
+    "mae"
+  ],
+  "performance_metrics": [
+    "time_pygamlab_ms",
+    "time_scipy_ms",
+    "n_points"
+  ],
+  "results": [
+    {
+      "task": "dsc_Tg",
+      "reference": "DSC(dsc_data, application='Tg', prominence=0.05, distance=20, sample_mass=1.0, heating_rate=1.0, orientation='endo_up')",
+      "dataset": "DSC-NonIsothermal.xlsx",
+      "n_points": 1599,
+      "accuracy_metric": "absolute_error_C",
+      "error": 0.0,
+      "pygamlab_value": 60.0347,
+      "scipy_value": 60.0347,
+      "time_pygamlab_ms": 3.381,
+      "time_scipy_ms": 0.032,
+      "scipy_method": "numpy.gradient max |dy/dx|"
+    },
+    {
+      "task": "dsc_Tm",
+      "reference": "DSC(dsc_data, application='Tm', prominence=0.05, distance=20, sample_mass=1.0, heating_rate=1.0, orientation='endo_up')",
+      "dataset": "DSC-NonIsothermal.xlsx",
+      "n_points": 1599,
+      "accuracy_metric": "absolute_error_C",
+      "error": 0.0,
+      "pygamlab_value": 91.4084,
+      "scipy_value": 91.4084,
+      "time_pygamlab_ms": 2.817,
+      "time_scipy_ms": 0.031,
+      "scipy_method": "scipy.signal.find_peaks"
+    },
+    {
+      "task": "dsc_Tc",
+      "reference": "DSC(dsc_data, application='Tc', prominence=0.05, distance=20, sample_mass=1.0, heating_rate=1.0, orientation='endo_up')",
+      "dataset": "DSC-NonIsothermal.xlsx",
+      "n_points": 1599,
+      "accuracy_metric": "absolute_error_C",
+      "error": 0.0,
+      "pygamlab_value": 61.4966,
+      "scipy_value": 61.4966,
+      "time_pygamlab_ms": 2.969,
+      "time_scipy_ms": 0.032,
+      "scipy_method": "scipy.signal.find_peaks"
+    },
+    {
+      "task": "dsc_peak_detection",
+      "reference": "DSC(dsc_data, application='peak_detection', prominence=0.05, distance=20, sample_mass=1.0, heating_rate=1.0, orientation='endo_up')",
+      "dataset": "DSC-NonIsothermal.xlsx",
+      "n_points": 1599,
+      "accuracy_metric": "rmsd_C",
+      "error": 0.0,
+      "pygamlab_value": [
+        91.4084,
+        166.802,
+        61.4966,
+        102.401,
+        219.181
+      ],
+      "scipy_value": [
+        91.4084,
+        166.802,
+        61.4966,
+        102.401,
+        219.181
+      ],
+      "time_pygamlab_ms": 2.99,
+      "time_scipy_ms": 0.053,
+      "scipy_method": "scipy.signal.find_peaks"
+    },
+    {
+      "task": "dsc_dH",
+      "reference": "DSC(dsc_data, application='dH', prominence=0.05, distance=20, sample_mass=1.0, heating_rate=1.0, orientation='endo_up')",
+      "dataset": "DSC-NonIsothermal.xlsx",
+      "n_points": 1599,
+      "accuracy_metric": "mae_J_per_g",
+      "error": 15.980263,
+      "pygamlab_value": [
+        -28.286668343000017,
+        -17.429924519999986,
+        -17.940100470500024,
+        -4.614613777999998,
+        -19.52374513500006
+      ],
+      "scipy_value": [
+        -5.389291384257125,
+        0.16370571167791464,
+        -0.4289811360432866,
+        0.13511654990197322,
+        -2.3742877754173297
+      ],
+      "time_pygamlab_ms": 5.253,
+      "time_scipy_ms": 0.241,
+      "scipy_method": "scipy.integrate.simpson on a baseline-corrected peak"
+    },
+    {
+      "task": "dsc_kinetics",
+      "reference": "DSC(dsc_data, application='kinetics', prominence=0.05, distance=20, sample_mass=1.0, heating_rate=1.0, orientation='endo_up')",
+      "dataset": "DSC-NonIsothermal.xlsx",
+      "n_points": 1599,
+      "accuracy_metric": "mae_onset_C",
+      "error": 2.275867,
+      "pygamlab_value": [
+        56.6023,
+        97.4038,
+        214.183
+      ],
+      "scipy_value": [
+        56.1041,
+        93.7404,
+        216.849
+      ],
+      "time_pygamlab_ms": 5.878,
+      "time_scipy_ms": 0.068,
+      "scipy_method": "onset at 5% of peak height above the local baseline"
+    },
+    {
+      "task": "pl_peak_position",
+      "reference": "Photoluminescence_analysis(pl_data, application='peak_position')",
+      "dataset": "pl_data.xlsx",
+      "n_points": 401,
+      "accuracy_metric": "absolute_error_nm",
+      "error": 0.0,
+      "pygamlab_value": 575.0700073,
+      "scipy_value": 575.0700073,
+      "time_pygamlab_ms": 2.9,
+      "time_scipy_ms": 0.02,
+      "scipy_method": "scipy.signal.find_peaks"
+    },
+    {
+      "task": "pl_peak_intensity",
+      "reference": "Photoluminescence_analysis(pl_data, application='peak_intensity')",
+      "dataset": "pl_data.xlsx",
+      "n_points": 401,
+      "accuracy_metric": "absolute_error",
+      "error": 0.0,
+      "pygamlab_value": 16.4718647,
+      "scipy_value": 16.4718647,
+      "time_pygamlab_ms": 19.562,
+      "time_scipy_ms": 0.02,
+      "scipy_method": "scipy.signal.find_peaks"
+    },
+    {
+      "task": "pl_bandgap",
+      "reference": "Photoluminescence_analysis(pl_data, application='bandgap_energy')",
+      "dataset": "pl_data.xlsx",
+      "n_points": 401,
+      "accuracy_metric": "absolute_error_eV",
+      "error": 0.001493,
+      "pygamlab_value": 2.157476991196855,
+      "scipy_value": 2.1559844342311654,
+      "time_pygamlab_ms": 15.432,
+      "time_scipy_ms": 0.02,
+      "scipy_method": "scipy.constants h*c/lambda"
+    },
+    {
+      "task": "pl_fwhm",
+      "reference": "Photoluminescence_analysis(pl_data, application='fwhm')",
+      "dataset": "pl_data.xlsx",
+      "n_points": 401,
+      "accuracy_metric": "absolute_error_nm",
+      "error": 93.418822,
+      "pygamlab_value": 111.46976132334936,
+      "scipy_value": 18.050939477098837,
+      "time_pygamlab_ms": 3.394,
+      "time_scipy_ms": 0.02,
+      "scipy_method": "scipy.signal.peak_widths"
+    },
+    {
+      "task": "nmr_mixture_composition",
+      "reference": "NMR_Analysis(nmr_data, application='mixture_composition', peak_info={'CompoundA': {'region': (-116.0, -114.5), 'protons': 2}, 'CompoundB': {'region': (-111.8, -110.6), 'protons': 1}})",
+      "dataset": "nmr_data.xlsx",
+      "n_points": 1991,
+      "accuracy_metric": "mae_mole_fraction",
+      "error": 0.001857,
+      "pygamlab_value": {
+        "CompoundA": 0.35,
+        "CompoundB": 0.65
+      },
+      "scipy_value": {
+        "CompoundA": 0.3481434653773819,
+        "CompoundB": 0.6518565346226181
+      },
+      "time_pygamlab_ms": 0.313,
+      "time_scipy_ms": 0.289,
+      "scipy_method": "scipy.integrate.simpson per proton"
+    },
+    {
+      "task": "nmr_impurity",
+      "reference": "NMR_Analysis(nmr_data, application='calculate_impurity', peak_info={'main_compound': {'region': (-111.8, -110.6), 'protons': 1}, 'impurity': {'region': (-107.3, -106.2), 'protons': 1}})",
+      "dataset": "nmr_data.xlsx",
+      "n_points": 1991,
+      "accuracy_metric": "absolute_error_percent",
+      "error": 0.00301,
+      "pygamlab_value": 25.57,
+      "scipy_value": 25.566989876311318,
+      "time_pygamlab_ms": 0.28,
+      "time_scipy_ms": 0.271,
+      "scipy_method": "scipy.integrate.simpson per proton"
+    },
+    {
+      "task": "aes_peak_position",
+      "reference": "Auger_Electron_Spectroscopy_analysis(aes_data, application='peak_position')",
+      "dataset": "aes.xlsx",
+      "n_points": 41,
+      "accuracy_metric": "rmsd_eV",
+      "error": 0.0,
+      "pygamlab_value": [
+        165.0,
+        170.0,
+        175.0,
+        180.0
+      ],
+      "scipy_value": [
+        165.0,
+        170.0,
+        175.0,
+        180.0
+      ],
+      "time_pygamlab_ms": 0.084,
+      "time_scipy_ms": 0.016,
+      "scipy_method": "scipy.signal.find_peaks"
+    },
+    {
+      "task": "aes_atomic",
+      "reference": "Auger_Electron_Spectroscopy_analysis(aes_data, application='atomic', sensitivity_factors={'C': 0.25, 'O': 0.66})",
+      "dataset": "aes.xlsx",
+      "n_points": 41,
+      "accuracy_metric": "mae_atomic_percent",
+      "error": 1.31058,
+      "pygamlab_value": [
+        {
+          "Element": "C",
+          "Atomic %": 72.52747252747254
+        },
+        {
+          "Element": "O",
+          "Atomic %": 27.472527472527474
+        }
+      ],
+      "scipy_value": [
+        {
+          "Element": "C",
+          "Atomic %": 71.21689297330786
+        },
+        {
+          "Element": "O",
+          "Atomic %": 28.783107026692136
+        }
+      ],
+      "time_pygamlab_ms": 0.083,
+      "time_scipy_ms": 0.035,
+      "scipy_method": "scipy.integrate.trapezoid peak area / sensitivity factor"
+    }
+  ]
+}
