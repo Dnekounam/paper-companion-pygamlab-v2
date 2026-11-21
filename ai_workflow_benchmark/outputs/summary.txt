@@ -1,0 +1,16 @@
+pygamlab regression_PIPE vs scikit-learn
+pygamlab 2.0.1
+
+Data: chemical_congress.xlsx, features Mw, Melting point, density, HBD, HBA.
+Target: abs(log(solubility)) after two IQR filters, as in the congress solution.
+Metrics are out-of-fold MAE, RMSE, and R². Times are milliseconds.
+fit is GridSearchCV. inference is predict on the full feature matrix.
+
+task                     n    MAE_gam     MAE_sk   RMSE_gam    RMSE_sk   R2_gam    R2_sk    fit_gam     fit_sk  inf_gam   inf_sk  reference
+-------------------------------------------------------------------------------------------------------------------------------------------
+knn                     81     1.6443     1.6443     2.1274     2.1274   0.0400   0.0400     2841.3      483.6    0.268    0.262  regression_PIPE(X, y).make_pipe(model=KNeighborsRegressor(), specific_preprocessor=MinMaxScaler()); fitting(myparams=knn_params)
+random_forest           81     1.6185     1.6185     2.1368     2.1368   0.0315   0.0315    26429.6    26999.0    0.995    0.928  regression_PIPE(X, y).make_pipe(model=RandomForestRegressor(random_state=42), specific_preprocessor=MinMaxScaler()); fitting(myparams=rf_params)
+linear_regression       81     1.8579     1.8579     2.3012     2.3012  -0.1233  -0.1233       30.7       16.7    0.058    0.057  regression_PIPE(X, y).make_pipe(model=LinearRegression(), specific_preprocessor=MinMaxScaler()); fitting(myparams={})
+decision_tree           81     1.7167     1.7167     2.2160     2.2160  -0.0416  -0.0416     1213.8     1273.2    0.080    0.069  regression_PIPE(X, y).make_pipe(model=DecisionTreeRegressor(random_state=42), specific_preprocessor=MinMaxScaler()); fitting(myparams=dt_params)
+svr                     81     1.7549     1.7549     2.1758     2.1758  -0.0042  -0.0042     2219.4     2148.9    0.305    0.301  regression_PIPE(X, y).make_pipe(model=SVR(), specific_preprocessor=MinMaxScaler()); fitting(myparams=svr_params)
+mlp                     81     1.8194     1.8194     2.3141     2.3141  -0.1358  -0.1358   113856.2   150391.8    0.120    0.112  regression_PIPE(X, y).make_pipe(model=MLPRegressor(random_state=42), poly=True, specific_preprocessor=MinMaxScaler()); fitting(myparams=mlp_params)
