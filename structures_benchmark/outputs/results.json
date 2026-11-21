@@ -14,7 +14,7 @@
   "results": [
     {
       "task": "graphene_supercell",
-      "reference": "ase.build.graphene",
+      "reference": "graphene_unit_cell(lattice_constant=2.46)  # supercell 2x2",
       "parameters": "a=2.46 A, size=2x2",
       "n_atoms_pygamlab": 8,
       "n_atoms_ase": 8,
@@ -26,12 +26,12 @@
       "ideal_bond_A": 1.4202816622064793,
       "bond_mae_vs_ideal_pygamlab_A": 0.0,
       "bond_mae_vs_ideal_ase_A": 0.0,
-      "time_pygamlab_ms": 0.035,
-      "time_ase_ms": 0.095
+      "time_pygamlab_ms": 0.034,
+      "time_ase_ms": 0.1
     },
     {
       "task": "graphene_supercell",
-      "reference": "ase.build.graphene",
+      "reference": "graphene_unit_cell(lattice_constant=2.46)  # supercell 4x4",
       "parameters": "a=2.46 A, size=4x4",
       "n_atoms_pygamlab": 32,
       "n_atoms_ase": 32,
@@ -43,12 +43,12 @@
       "ideal_bond_A": 1.4202816622064793,
       "bond_mae_vs_ideal_pygamlab_A": 0.0,
       "bond_mae_vs_ideal_ase_A": 0.0,
-      "time_pygamlab_ms": 0.067,
-      "time_ase_ms": 0.118
+      "time_pygamlab_ms": 0.066,
+      "time_ase_ms": 0.12
     },
     {
       "task": "graphene_supercell",
-      "reference": "ase.build.graphene",
+      "reference": "graphene_unit_cell(lattice_constant=2.46)  # supercell 8x8",
       "parameters": "a=2.46 A, size=8x8",
       "n_atoms_pygamlab": 128,
       "n_atoms_ase": 128,
@@ -60,12 +60,12 @@
       "ideal_bond_A": 1.4202816622064793,
       "bond_mae_vs_ideal_pygamlab_A": 0.0,
       "bond_mae_vs_ideal_ase_A": 0.0,
-      "time_pygamlab_ms": 0.209,
-      "time_ase_ms": 0.252
+      "time_pygamlab_ms": 0.211,
+      "time_ase_ms": 0.245
     },
     {
       "task": "graphene_supercell",
-      "reference": "ase.build.graphene",
+      "reference": "graphene_unit_cell(lattice_constant=2.46)  # supercell 16x16",
       "parameters": "a=2.46 A, size=16x16",
       "n_atoms_pygamlab": 512,
       "n_atoms_ase": 512,
@@ -77,12 +77,12 @@
       "ideal_bond_A": 1.4202816622064793,
       "bond_mae_vs_ideal_pygamlab_A": 0.0,
       "bond_mae_vs_ideal_ase_A": 0.0,
-      "time_pygamlab_ms": 0.765,
-      "time_ase_ms": 0.746
+      "time_pygamlab_ms": 0.772,
+      "time_ase_ms": 2.004
     },
     {
       "task": "graphene_flake",
-      "reference": "ase.build.graphene",
+      "reference": "Graphene(lattice_constant=2.46, width=8.0, length=8.0, edge_type='armchair')",
       "parameters": "a=2.46 A, armchair, width=length=8.0 A",
       "n_atoms_pygamlab": 25,
       "n_atoms_ase": 200,
@@ -94,12 +94,12 @@
       "ideal_bond_A": 1.4202816622064793,
       "bond_mae_vs_ideal_pygamlab_A": 0.0,
       "bond_mae_vs_ideal_ase_A": 0.0,
-      "time_pygamlab_ms": 0.796,
-      "time_ase_ms": 0.937
+      "time_pygamlab_ms": 0.797,
+      "time_ase_ms": 0.35
     },
     {
       "task": "graphene_flake",
-      "reference": "ase.build.graphene",
+      "reference": "Graphene(lattice_constant=2.46, width=12.0, length=12.0, edge_type='armchair')",
       "parameters": "a=2.46 A, armchair, width=length=12.0 A",
       "n_atoms_pygamlab": 50,
       "n_atoms_ase": 288,
@@ -111,12 +111,12 @@
       "ideal_bond_A": 1.4202816622064793,
       "bond_mae_vs_ideal_pygamlab_A": 0.0,
       "bond_mae_vs_ideal_ase_A": 0.0,
-      "time_pygamlab_ms": 3.172,
-      "time_ase_ms": 1.229
+      "time_pygamlab_ms": 2.615,
+      "time_ase_ms": 0.457
     },
     {
       "task": "graphene_flake",
-      "reference": "ase.build.graphene",
+      "reference": "Graphene(lattice_constant=2.46, width=20.0, length=20.0, edge_type='armchair')",
       "parameters": "a=2.46 A, armchair, width=length=20.0 A",
       "n_atoms_pygamlab": 160,
       "n_atoms_ase": 800,
@@ -128,12 +128,12 @@
       "ideal_bond_A": 1.4202816622064793,
       "bond_mae_vs_ideal_pygamlab_A": 0.0,
       "bond_mae_vs_ideal_ase_A": 0.0,
-      "time_pygamlab_ms": 23.365,
-      "time_ase_ms": 1.191
+      "time_pygamlab_ms": 33.823,
+      "time_ase_ms": 1.163
     },
     {
       "task": "graphene_flake",
-      "reference": "ase.build.graphene",
+      "reference": "Graphene(lattice_constant=2.46, width=8.0, length=8.0, edge_type='zigzag')",
       "parameters": "a=2.46 A, zigzag, width=length=8.0 A",
       "n_atoms_pygamlab": 25,
       "n_atoms_ase": 200,
@@ -145,12 +145,12 @@
       "ideal_bond_A": 1.4202816622064793,
       "bond_mae_vs_ideal_pygamlab_A": 0.0,
       "bond_mae_vs_ideal_ase_A": 0.0,
-      "time_pygamlab_ms": 0.817,
-      "time_ase_ms": 0.348
+      "time_pygamlab_ms": 0.805,
+      "time_ase_ms": 0.343
     },
     {
       "task": "graphene_flake",
-      "reference": "ase.build.graphene",
+      "reference": "Graphene(lattice_constant=2.46, width=12.0, length=12.0, edge_type='zigzag')",
       "parameters": "a=2.46 A, zigzag, width=length=12.0 A",
       "n_atoms_pygamlab": 50,
       "n_atoms_ase": 288,
@@ -162,12 +162,12 @@
       "ideal_bond_A": 1.4202816622064793,
       "bond_mae_vs_ideal_pygamlab_A": 0.0,
       "bond_mae_vs_ideal_ase_A": 0.0,
-      "time_pygamlab_ms": 2.485,
-      "time_ase_ms": 0.465
+      "time_pygamlab_ms": 2.482,
+      "time_ase_ms": 0.462
     },
     {
       "task": "graphene_flake",
-      "reference": "ase.build.graphene",
+      "reference": "Graphene(lattice_constant=2.46, width=20.0, length=20.0, edge_type='zigzag')",
       "parameters": "a=2.46 A, zigzag, width=length=20.0 A",
       "n_atoms_pygamlab": 160,
       "n_atoms_ase": 800,
@@ -179,12 +179,12 @@
       "ideal_bond_A": 1.4202816622064793,
       "bond_mae_vs_ideal_pygamlab_A": 0.0,
       "bond_mae_vs_ideal_ase_A": 0.0,
-      "time_pygamlab_ms": 22.348,
-      "time_ase_ms": 1.149
+      "time_pygamlab_ms": 22.518,
+      "time_ase_ms": 1.159
     },
     {
       "task": "silicene_supercell",
-      "reference": "ase.build.graphene(formula=Si2, thickness=buckling)",
+      "reference": "silicene_unit_cell(lattice_constant=3.87)  # buckling_height=0.44, supercell 4x4",
       "parameters": "a=3.87 A, buckling=0.44 A, size=4x4",
       "n_atoms_pygamlab": 32,
       "n_atoms_ase": 32,
@@ -196,12 +196,12 @@
       "ideal_bond_A": 2.2772571220659295,
       "bond_mae_vs_ideal_pygamlab_A": 0.0,
       "bond_mae_vs_ideal_ase_A": 0.0,
-      "time_pygamlab_ms": 0.061,
-      "time_ase_ms": 0.119
+      "time_pygamlab_ms": 0.063,
+      "time_ase_ms": 0.118
     },
     {
       "task": "silicene_flake",
-      "reference": "ase.build.graphene(formula=Si2, thickness=buckling)",
+      "reference": "Silicene(lattice_constant=3.87, width=12.0, length=12.0, buckling_height=0.44)",
       "parameters": "a=3.87 A, buckling=0.44 A, width=length=12 A",
       "n_atoms_pygamlab": 162,
       "n_atoms_ase": 288,
@@ -213,12 +213,12 @@
       "ideal_bond_A": 2.2772571220659295,
       "bond_mae_vs_ideal_pygamlab_A": 0.0,
       "bond_mae_vs_ideal_ase_A": 0.0,
-      "time_pygamlab_ms": 25.454,
-      "time_ase_ms": 1.232
+      "time_pygamlab_ms": 35.877,
+      "time_ase_ms": 0.46
     },
     {
       "task": "phosphorene_supercell",
-      "reference": "ase.Atoms Midtvedt-Croy puckered cell",
+      "reference": "phosphorene_unit_cell(lattice_a=3.313, lattice_b=4.376, puckering_height=2.14)  # supercell 3x3",
       "parameters": "4-atom basis, size=3x3",
       "n_atoms_pygamlab": 36,
       "n_atoms_ase": 36,
@@ -230,12 +230,12 @@
       "ideal_bond_A": 2.224,
       "bond_mae_vs_ideal_pygamlab_A": 0.689683,
       "bond_mae_vs_ideal_ase_A": 0.0,
-      "time_pygamlab_ms": 0.113,
-      "time_ase_ms": 0.053
+      "time_pygamlab_ms": 0.116,
+      "time_ase_ms": 0.051
     },
     {
       "task": "phosphorene_flake",
-      "reference": "ase.Atoms Midtvedt-Croy puckered cell",
+      "reference": "Phosphorene(width=12.0, length=12.0)",
       "parameters": "Phosphorene defaults, width=length=12 A",
       "n_atoms_pygamlab": 48,
       "n_atoms_ase": 64,
@@ -247,12 +247,12 @@
       "ideal_bond_A": 2.224,
       "bond_mae_vs_ideal_pygamlab_A": 0.687988,
       "bond_mae_vs_ideal_ase_A": 0.0,
-      "time_pygamlab_ms": 5.006,
-      "time_ase_ms": 0.173
+      "time_pygamlab_ms": 2.007,
+      "time_ase_ms": 0.07
     },
     {
       "task": "nanotube",
-      "reference": "ase.build.nanotube",
+      "reference": "Nanotube_Generator(n=6, m=0, length=10.6500, atom_type='C')",
       "parameters": "(6,0), cells=2, bond=1.42 A",
       "n_atoms_pygamlab": 48,
       "n_atoms_ase": 48,
@@ -264,12 +264,12 @@
       "ideal_bond_A": 1.42,
       "bond_mae_vs_ideal_pygamlab_A": 0.007264,
       "bond_mae_vs_ideal_ase_A": 0.007264,
-      "time_pygamlab_ms": 1.961,
-      "time_ase_ms": 0.246
+      "time_pygamlab_ms": 1.992,
+      "time_ase_ms": 0.222
     },
     {
       "task": "nanotube",
-      "reference": "ase.build.nanotube",
+      "reference": "Nanotube_Generator(n=5, m=5, length=6.1488, atom_type='C')",
       "parameters": "(5,5), cells=2, bond=1.42 A",
       "n_atoms_pygamlab": 40,
       "n_atoms_ase": 40,
@@ -281,12 +281,12 @@
       "ideal_bond_A": 1.42,
       "bond_mae_vs_ideal_pygamlab_A": 0.004026,
       "bond_mae_vs_ideal_ase_A": 0.004026,
-      "time_pygamlab_ms": 1.383,
-      "time_ase_ms": 0.081
+      "time_pygamlab_ms": 3.467,
+      "time_ase_ms": 0.203
     },
     {
       "task": "nanotube",
-      "reference": "ase.build.nanotube",
+      "reference": "Nanotube_Generator(n=8, m=2, length=9.7609, atom_type='C')",
       "parameters": "(8,2), cells=1, bond=1.42 A",
       "n_atoms_pygamlab": 56,
       "n_atoms_ase": 56,
@@ -298,12 +298,12 @@
       "ideal_bond_A": 1.42,
       "bond_mae_vs_ideal_pygamlab_A": 0.003673,
       "bond_mae_vs_ideal_ase_A": 0.003673,
-      "time_pygamlab_ms": 3.156,
-      "time_ase_ms": 0.395
+      "time_pygamlab_ms": 2.733,
+      "time_ase_ms": 0.169
     },
     {
       "task": "nanoparticle_sphere",
-      "reference": "ase.build.bulk fcc sphere",
+      "reference": "Nanoparticle_Generator(element='Au', size_nm=1.5, shape='sphere', crystal_structure='FCC', lattice_constant=4.08)",
       "parameters": "Au FCC a=4.08 A, radius=7.5 A",
       "n_atoms_pygamlab": 87,
       "n_atoms_ase": 87,
@@ -315,12 +315,12 @@
       "ideal_bond_A": 2.884995667241114,
       "bond_mae_vs_ideal_pygamlab_A": 0.0,
       "bond_mae_vs_ideal_ase_A": 0.0,
-      "time_pygamlab_ms": 4.871,
-      "time_ase_ms": 1.168
+      "time_pygamlab_ms": 3.569,
+      "time_ase_ms": 1.044
     },
     {
       "task": "nanoparticle_octahedron",
-      "reference": "ase.cluster.Octahedron",
+      "reference": "Nanoparticle_Generator(element='Au', size_nm=1.5, shape='octahedron', crystal_structure='FCC', lattice_constant=4.08)",
       "parameters": "Au FCC a=4.08 A, pygamlab size_nm=1.5, ASE length=3",
       "n_atoms_pygamlab": 19,
       "n_atoms_ase": 19,
@@ -332,8 +332,8 @@
       "ideal_bond_A": 2.884995667241114,
       "bond_mae_vs_ideal_pygamlab_A": 0.0,
       "bond_mae_vs_ideal_ase_A": 0.0,
-      "time_pygamlab_ms": 3.859,
-      "time_ase_ms": 2.908
+      "time_pygamlab_ms": 2.668,
+      "time_ase_ms": 7.714
     }
   ]
 }

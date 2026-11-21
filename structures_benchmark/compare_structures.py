@@ -447,7 +447,7 @@ def graphene_cases():
     for nx, ny in ((2, 2), (4, 4), (8, 8), (16, 16)):
         cases.append(dict(
             task="graphene_supercell",
-            reference="ase.build.graphene",
+            reference=f"graphene_unit_cell(lattice_constant={GRAPHENE_A})  # supercell {nx}x{ny}",
             parameters=f"a={GRAPHENE_A} A, size={nx}x{ny}",
             build_gam=lambda nx=nx, ny=ny: pygamlab_graphene_supercell(nx, ny),
             build_ase=lambda nx=nx, ny=ny: ase_graphene_supercell(nx, ny),
@@ -472,7 +472,10 @@ def graphene_cases():
 
             cases.append(dict(
                 task="graphene_flake",
-                reference="ase.build.graphene",
+                reference=(
+                    f"Graphene(lattice_constant={GRAPHENE_A}, width={width}, "
+                    f"length={width}, edge_type='{edge}')"
+                ),
                 parameters=f"a={GRAPHENE_A} A, {edge}, width=length={width} A",
                 build_gam=build_gam,
                 build_ase=build_ase,
@@ -488,7 +491,10 @@ def silicene_cases():
     ideal = float(np.hypot(in_plane, SILICENE_BUCKLING))
     cases = [dict(
         task="silicene_supercell",
-        reference="ase.build.graphene(formula=Si2, thickness=buckling)",
+        reference=(
+            f"silicene_unit_cell(lattice_constant={SILICENE_A})  "
+            f"# buckling_height={SILICENE_BUCKLING}, supercell 4x4"
+        ),
         parameters=f"a={SILICENE_A} A, buckling={SILICENE_BUCKLING} A, size=4x4",
         build_gam=lambda: pygamlab_silicene_supercell(4, 4),
         build_ase=lambda: ase_silicene_supercell(4, 4),
@@ -508,7 +514,10 @@ def silicene_cases():
 
     cases.append(dict(
         task="silicene_flake",
-        reference="ase.build.graphene(formula=Si2, thickness=buckling)",
+        reference=(
+            f"Silicene(lattice_constant={SILICENE_A}, width=12.0, length=12.0, "
+            f"buckling_height={SILICENE_BUCKLING})"
+        ),
         parameters=f"a={SILICENE_A} A, buckling={SILICENE_BUCKLING} A, width=length=12 A",
         build_gam=build_flake,
         build_ase=lambda: ase_silicene_supercell(12, 12),
@@ -522,7 +531,10 @@ def silicene_cases():
 def phosphorene_cases():
     cases = [dict(
         task="phosphorene_supercell",
-        reference="ase.Atoms Midtvedt-Croy puckered cell",
+        reference=(
+            "phosphorene_unit_cell(lattice_a=3.313, lattice_b=4.376, "
+            "puckering_height=2.14)  # supercell 3x3"
+        ),
         parameters="4-atom basis, size=3x3",
         build_gam=lambda: pygamlab_phosphorene_supercell(3, 3),
         build_ase=lambda: ase_phosphorene_supercell(3, 3),
@@ -536,7 +548,7 @@ def phosphorene_cases():
 
     cases.append(dict(
         task="phosphorene_flake",
-        reference="ase.Atoms Midtvedt-Croy puckered cell",
+        reference="Phosphorene(width=12.0, length=12.0)",
         parameters="Phosphorene defaults, width=length=12 A",
         build_gam=build_flake,
         build_ase=lambda: ase_phosphorene_supercell(4, 4),
@@ -563,7 +575,9 @@ def nanotube_cases():
 
         cases.append(dict(
             task="nanotube",
-            reference="ase.build.nanotube",
+            reference=(
+                f"Nanotube_Generator(n={n}, m={m}, length={length_A:.4f}, atom_type='C')"
+            ),
             parameters=f"({n},{m}), cells={repeats}, bond={NANOTUBE_BOND} A",
             build_gam=build_gam,
             build_ase=build_ase,
@@ -600,7 +614,10 @@ def nanoparticle_cases():
     return [
         dict(
             task="nanoparticle_sphere",
-            reference="ase.build.bulk fcc sphere",
+            reference=(
+                f"Nanoparticle_Generator(element='Au', size_nm=1.5, shape='sphere', "
+                f"crystal_structure='FCC', lattice_constant={AU_A})"
+            ),
             parameters=f"Au FCC a={AU_A} A, radius={radius} A",
             build_gam=build_sphere,
             build_ase=lambda: ase_fcc_sphere("Au", AU_A, radius),
@@ -609,7 +626,10 @@ def nanoparticle_cases():
         ),
         dict(
             task="nanoparticle_octahedron",
-            reference="ase.cluster.Octahedron",
+            reference=(
+                f"Nanoparticle_Generator(element='Au', size_nm=1.5, shape='octahedron', "
+                f"crystal_structure='FCC', lattice_constant={AU_A})"
+            ),
             parameters=f"Au FCC a={AU_A} A, pygamlab size_nm=1.5, ASE length=3",
             build_gam=build_octahedron,
             build_ase=lambda: Octahedron("Au", length=3, latticeconstant=AU_A),
@@ -633,7 +653,7 @@ def write_summary(records):
     path = OUT_DIR / "summary.txt"
     header = (
         f"{'task':<24} {'n_gam':>6} {'n_ase':>6} {'RMSD_A':>10} "
-        f"{'bond_err_A':>11} {'t_gam_ms':>10} {'t_ase_ms':>10}  parameters"
+        f"{'bond_err_A':>11} {'t_gam_ms':>10} {'t_ase_ms':>10}  reference"
     )
     lines = [
         "pygamlab GAM_architectures vs ASE",
@@ -652,7 +672,7 @@ def write_summary(records):
         lines.append(
             f"{row['task']:<24} {row['n_atoms_pygamlab']:6d} {row['n_atoms_ase']:6d} "
             f"{rmsd:>10} {bond:>11} {row['time_pygamlab_ms']:10.3f} "
-            f"{row['time_ase_ms']:10.3f}  {row['parameters']}"
+            f"{row['time_ase_ms']:10.3f}  {row['reference']}"
         )
     path.write_text("\n".join(lines) + "\n")
     return path

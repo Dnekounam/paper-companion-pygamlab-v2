@@ -1,20 +1,20 @@
 task,reference,parameters,n_atoms_pygamlab,n_atoms_ase,matched_atoms,rmsd_A,bond_length_error_A,mean_bond_pygamlab_A,mean_bond_ase_A,ideal_bond_A,bond_mae_vs_ideal_pygamlab_A,bond_mae_vs_ideal_ase_A,time_pygamlab_ms,time_ase_ms
-graphene_supercell,ase.build.graphene,"a=2.46 A, size=2x2",8,8,8,0.0,0.0,1.420282,1.420282,1.4202816622064793,0.0,0.0,0.035,0.095
-graphene_supercell,ase.build.graphene,"a=2.46 A, size=4x4",32,32,32,0.0,0.0,1.420282,1.420282,1.4202816622064793,0.0,0.0,0.067,0.118
-graphene_supercell,ase.build.graphene,"a=2.46 A, size=8x8",128,128,128,0.0,0.0,1.420282,1.420282,1.4202816622064793,0.0,0.0,0.209,0.252
-graphene_supercell,ase.build.graphene,"a=2.46 A, size=16x16",512,512,512,0.0,0.0,1.420282,1.420282,1.4202816622064793,0.0,0.0,0.765,0.746
-graphene_flake,ase.build.graphene,"a=2.46 A, armchair, width=length=8.0 A",25,200,25,0.0,0.0,1.420282,1.420282,1.4202816622064793,0.0,0.0,0.796,0.937
-graphene_flake,ase.build.graphene,"a=2.46 A, armchair, width=length=12.0 A",50,288,50,0.0,0.0,1.420282,1.420282,1.4202816622064793,0.0,0.0,3.172,1.229
-graphene_flake,ase.build.graphene,"a=2.46 A, armchair, width=length=20.0 A",160,800,160,0.0,0.0,1.420282,1.420282,1.4202816622064793,0.0,0.0,23.365,1.191
-graphene_flake,ase.build.graphene,"a=2.46 A, zigzag, width=length=8.0 A",25,200,25,0.0,0.0,1.420282,1.420282,1.4202816622064793,0.0,0.0,0.817,0.348
-graphene_flake,ase.build.graphene,"a=2.46 A, zigzag, width=length=12.0 A",50,288,50,0.0,0.0,1.420282,1.420282,1.4202816622064793,0.0,0.0,2.485,0.465
-graphene_flake,ase.build.graphene,"a=2.46 A, zigzag, width=length=20.0 A",160,800,160,0.0,0.0,1.420282,1.420282,1.4202816622064793,0.0,0.0,22.348,1.149
-silicene_supercell,"ase.build.graphene(formula=Si2, thickness=buckling)","a=3.87 A, buckling=0.44 A, size=4x4",32,32,32,0.0,0.0,2.277257,2.277257,2.2772571220659295,0.0,0.0,0.061,0.119
-silicene_flake,"ase.build.graphene(formula=Si2, thickness=buckling)","a=3.87 A, buckling=0.44 A, width=length=12 A",162,288,162,0.0,0.0,2.277257,2.277257,2.2772571220659295,0.0,0.0,25.454,1.232
-phosphorene_supercell,ase.Atoms Midtvedt-Croy puckered cell,"4-atom basis, size=3x3",36,36,36,1.088188,0.689683,2.913683,2.224,2.224,0.689683,0.0,0.113,0.053
-phosphorene_flake,ase.Atoms Midtvedt-Croy puckered cell,"Phosphorene defaults, width=length=12 A",48,64,48,1.083954,0.687988,2.911988,2.224,2.224,0.687988,0.0,5.006,0.173
-nanotube,ase.build.nanotube,"(6,0), cells=2, bond=1.42 A",48,48,48,0.0,0.0,1.412736,1.412736,1.42,0.007264,0.007264,1.961,0.246
-nanotube,ase.build.nanotube,"(5,5), cells=2, bond=1.42 A",40,40,40,0.0,0.0,1.415974,1.415974,1.42,0.004026,0.004026,1.383,0.081
-nanotube,ase.build.nanotube,"(8,2), cells=1, bond=1.42 A",56,56,56,0.0,0.0,1.416327,1.416327,1.42,0.003673,0.003673,3.156,0.395
-nanoparticle_sphere,ase.build.bulk fcc sphere,"Au FCC a=4.08 A, radius=7.5 A",87,87,87,0.0,0.0,2.884996,2.884996,2.884995667241114,0.0,0.0,4.871,1.168
-nanoparticle_octahedron,ase.cluster.Octahedron,"Au FCC a=4.08 A, pygamlab size_nm=1.5, ASE length=3",19,19,19,0.0,0.0,2.884996,2.884996,2.884995667241114,0.0,0.0,3.859,2.908
+graphene_supercell,graphene_unit_cell(lattice_constant=2.46)  # supercell 2x2,"a=2.46 A, size=2x2",8,8,8,0.0,0.0,1.420282,1.420282,1.4202816622064793,0.0,0.0,0.034,0.1
+graphene_supercell,graphene_unit_cell(lattice_constant=2.46)  # supercell 4x4,"a=2.46 A, size=4x4",32,32,32,0.0,0.0,1.420282,1.420282,1.4202816622064793,0.0,0.0,0.066,0.12
+graphene_supercell,graphene_unit_cell(lattice_constant=2.46)  # supercell 8x8,"a=2.46 A, size=8x8",128,128,128,0.0,0.0,1.420282,1.420282,1.4202816622064793,0.0,0.0,0.211,0.245
+graphene_supercell,graphene_unit_cell(lattice_constant=2.46)  # supercell 16x16,"a=2.46 A, size=16x16",512,512,512,0.0,0.0,1.420282,1.420282,1.4202816622064793,0.0,0.0,0.772,2.004
+graphene_flake,"Graphene(lattice_constant=2.46, width=8.0, length=8.0, edge_type='armchair')","a=2.46 A, armchair, width=length=8.0 A",25,200,25,0.0,0.0,1.420282,1.420282,1.4202816622064793,0.0,0.0,0.797,0.35
+graphene_flake,"Graphene(lattice_constant=2.46, width=12.0, length=12.0, edge_type='armchair')","a=2.46 A, armchair, width=length=12.0 A",50,288,50,0.0,0.0,1.420282,1.420282,1.4202816622064793,0.0,0.0,2.615,0.457
+graphene_flake,"Graphene(lattice_constant=2.46, width=20.0, length=20.0, edge_type='armchair')","a=2.46 A, armchair, width=length=20.0 A",160,800,160,0.0,0.0,1.420282,1.420282,1.4202816622064793,0.0,0.0,33.823,1.163
+graphene_flake,"Graphene(lattice_constant=2.46, width=8.0, length=8.0, edge_type='zigzag')","a=2.46 A, zigzag, width=length=8.0 A",25,200,25,0.0,0.0,1.420282,1.420282,1.4202816622064793,0.0,0.0,0.805,0.343
+graphene_flake,"Graphene(lattice_constant=2.46, width=12.0, length=12.0, edge_type='zigzag')","a=2.46 A, zigzag, width=length=12.0 A",50,288,50,0.0,0.0,1.420282,1.420282,1.4202816622064793,0.0,0.0,2.482,0.462
+graphene_flake,"Graphene(lattice_constant=2.46, width=20.0, length=20.0, edge_type='zigzag')","a=2.46 A, zigzag, width=length=20.0 A",160,800,160,0.0,0.0,1.420282,1.420282,1.4202816622064793,0.0,0.0,22.518,1.159
+silicene_supercell,"silicene_unit_cell(lattice_constant=3.87)  # buckling_height=0.44, supercell 4x4","a=3.87 A, buckling=0.44 A, size=4x4",32,32,32,0.0,0.0,2.277257,2.277257,2.2772571220659295,0.0,0.0,0.063,0.118
+silicene_flake,"Silicene(lattice_constant=3.87, width=12.0, length=12.0, buckling_height=0.44)","a=3.87 A, buckling=0.44 A, width=length=12 A",162,288,162,0.0,0.0,2.277257,2.277257,2.2772571220659295,0.0,0.0,35.877,0.46
+phosphorene_supercell,"phosphorene_unit_cell(lattice_a=3.313, lattice_b=4.376, puckering_height=2.14)  # supercell 3x3","4-atom basis, size=3x3",36,36,36,1.088188,0.689683,2.913683,2.224,2.224,0.689683,0.0,0.116,0.051
+phosphorene_flake,"Phosphorene(width=12.0, length=12.0)","Phosphorene defaults, width=length=12 A",48,64,48,1.083954,0.687988,2.911988,2.224,2.224,0.687988,0.0,2.007,0.07
+nanotube,"Nanotube_Generator(n=6, m=0, length=10.6500, atom_type='C')","(6,0), cells=2, bond=1.42 A",48,48,48,0.0,0.0,1.412736,1.412736,1.42,0.007264,0.007264,1.992,0.222
+nanotube,"Nanotube_Generator(n=5, m=5, length=6.1488, atom_type='C')","(5,5), cells=2, bond=1.42 A",40,40,40,0.0,0.0,1.415974,1.415974,1.42,0.004026,0.004026,3.467,0.203
+nanotube,"Nanotube_Generator(n=8, m=2, length=9.7609, atom_type='C')","(8,2), cells=1, bond=1.42 A",56,56,56,0.0,0.0,1.416327,1.416327,1.42,0.003673,0.003673,2.733,0.169
+nanoparticle_sphere,"Nanoparticle_Generator(element='Au', size_nm=1.5, shape='sphere', crystal_structure='FCC', lattice_constant=4.08)","Au FCC a=4.08 A, radius=7.5 A",87,87,87,0.0,0.0,2.884996,2.884996,2.884995667241114,0.0,0.0,3.569,1.044
+nanoparticle_octahedron,"Nanoparticle_Generator(element='Au', size_nm=1.5, shape='octahedron', crystal_structure='FCC', lattice_constant=4.08)","Au FCC a=4.08 A, pygamlab size_nm=1.5, ASE length=3",19,19,19,0.0,0.0,2.884996,2.884996,2.884995667241114,0.0,0.0,2.668,7.714

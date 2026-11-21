@@ -5,24 +5,24 @@ Accuracy: RMSD of pygamlab atoms to the ASE crystal (2D sheets), or rigid RMSD
 for nanotubes and nanoparticles. Bond-length error is |mean NN bond difference|.
 Performance: median build time after one warmup, and atom count.
 
-task                      n_gam  n_ase     RMSD_A  bond_err_A   t_gam_ms   t_ase_ms  parameters
------------------------------------------------------------------------------------------------
-graphene_supercell            8      8     0.0000      0.0000      0.035      0.095  a=2.46 A, size=2x2
-graphene_supercell           32     32     0.0000      0.0000      0.067      0.118  a=2.46 A, size=4x4
-graphene_supercell          128    128     0.0000      0.0000      0.209      0.252  a=2.46 A, size=8x8
-graphene_supercell          512    512     0.0000      0.0000      0.765      0.746  a=2.46 A, size=16x16
-graphene_flake               25    200     0.0000      0.0000      0.796      0.937  a=2.46 A, armchair, width=length=8.0 A
-graphene_flake               50    288     0.0000      0.0000      3.172      1.229  a=2.46 A, armchair, width=length=12.0 A
-graphene_flake              160    800     0.0000      0.0000     23.365      1.191  a=2.46 A, armchair, width=length=20.0 A
-graphene_flake               25    200     0.0000      0.0000      0.817      0.348  a=2.46 A, zigzag, width=length=8.0 A
-graphene_flake               50    288     0.0000      0.0000      2.485      0.465  a=2.46 A, zigzag, width=length=12.0 A
-graphene_flake              160    800     0.0000      0.0000     22.348      1.149  a=2.46 A, zigzag, width=length=20.0 A
-silicene_supercell           32     32     0.0000      0.0000      0.061      0.119  a=3.87 A, buckling=0.44 A, size=4x4
-silicene_flake              162    288     0.0000      0.0000     25.454      1.232  a=3.87 A, buckling=0.44 A, width=length=12 A
-phosphorene_supercell        36     36     1.0882      0.6897      0.113      0.053  4-atom basis, size=3x3
-phosphorene_flake            48     64     1.0840      0.6880      5.006      0.173  Phosphorene defaults, width=length=12 A
-nanotube                     48     48     0.0000      0.0000      1.961      0.246  (6,0), cells=2, bond=1.42 A
-nanotube                     40     40     0.0000      0.0000      1.383      0.081  (5,5), cells=2, bond=1.42 A
-nanotube                     56     56     0.0000      0.0000      3.156      0.395  (8,2), cells=1, bond=1.42 A
-nanoparticle_sphere          87     87     0.0000      0.0000      4.871      1.168  Au FCC a=4.08 A, radius=7.5 A
-nanoparticle_octahedron      19     19     0.0000      0.0000      3.859      2.908  Au FCC a=4.08 A, pygamlab size_nm=1.5, ASE length=3
+task                      n_gam  n_ase     RMSD_A  bond_err_A   t_gam_ms   t_ase_ms  reference
+----------------------------------------------------------------------------------------------
+graphene_supercell            8      8     0.0000      0.0000      0.034      0.100  graphene_unit_cell(lattice_constant=2.46)  # supercell 2x2
+graphene_supercell           32     32     0.0000      0.0000      0.066      0.120  graphene_unit_cell(lattice_constant=2.46)  # supercell 4x4
+graphene_supercell          128    128     0.0000      0.0000      0.211      0.245  graphene_unit_cell(lattice_constant=2.46)  # supercell 8x8
+graphene_supercell          512    512     0.0000      0.0000      0.772      2.004  graphene_unit_cell(lattice_constant=2.46)  # supercell 16x16
+graphene_flake               25    200     0.0000      0.0000      0.797      0.350  Graphene(lattice_constant=2.46, width=8.0, length=8.0, edge_type='armchair')
+graphene_flake               50    288     0.0000      0.0000      2.615      0.457  Graphene(lattice_constant=2.46, width=12.0, length=12.0, edge_type='armchair')
+graphene_flake              160    800     0.0000      0.0000     33.823      1.163  Graphene(lattice_constant=2.46, width=20.0, length=20.0, edge_type='armchair')
+graphene_flake               25    200     0.0000      0.0000      0.805      0.343  Graphene(lattice_constant=2.46, width=8.0, length=8.0, edge_type='zigzag')
+graphene_flake               50    288     0.0000      0.0000      2.482      0.462  Graphene(lattice_constant=2.46, width=12.0, length=12.0, edge_type='zigzag')
+graphene_flake              160    800     0.0000      0.0000     22.518      1.159  Graphene(lattice_constant=2.46, width=20.0, length=20.0, edge_type='zigzag')
+silicene_supercell           32     32     0.0000      0.0000      0.063      0.118  silicene_unit_cell(lattice_constant=3.87)  # buckling_height=0.44, supercell 4x4
+silicene_flake              162    288     0.0000      0.0000     35.877      0.460  Silicene(lattice_constant=3.87, width=12.0, length=12.0, buckling_height=0.44)
+phosphorene_supercell        36     36     1.0882      0.6897      0.116      0.051  phosphorene_unit_cell(lattice_a=3.313, lattice_b=4.376, puckering_height=2.14)  # supercell 3x3
+phosphorene_flake            48     64     1.0840      0.6880      2.007      0.070  Phosphorene(width=12.0, length=12.0)
+nanotube                     48     48     0.0000      0.0000      1.992      0.222  Nanotube_Generator(n=6, m=0, length=10.6500, atom_type='C')
+nanotube                     40     40     0.0000      0.0000      3.467      0.203  Nanotube_Generator(n=5, m=5, length=6.1488, atom_type='C')
+nanotube                     56     56     0.0000      0.0000      2.733      0.169  Nanotube_Generator(n=8, m=2, length=9.7609, atom_type='C')
+nanoparticle_sphere          87     87     0.0000      0.0000      3.569      1.044  Nanoparticle_Generator(element='Au', size_nm=1.5, shape='sphere', crystal_structure='FCC', lattice_constant=4.08)
+nanoparticle_octahedron      19     19     0.0000      0.0000      2.668      7.714  Nanoparticle_Generator(element='Au', size_nm=1.5, shape='octahedron', crystal_structure='FCC', lattice_constant=4.08)
