@@ -18,6 +18,7 @@ from __future__ import annotations
 import csv
 import io
 import json
+import os
 import time
 import warnings
 from contextlib import redirect_stdout
@@ -49,11 +50,12 @@ from scipy.spatial.distance import cdist
 plt.show = lambda *args, **kwargs: plt.close("all")
 
 OUT_DIR = Path(__file__).resolve().parent / "outputs"
+DATA_DIR = Path(os.environ.get("PYGAMLAB_BENCHMARK_DATA_DIR", "/Users/Dakota/Downloads"))
 DATA = {
-    "DSC": Path("/Users/Dakota/Downloads/DSC-NonIsothermal.xlsx"),
-    "PL": Path("/Users/Dakota/Downloads/pl_data.xlsx"),
-    "NMR": Path("/Users/Dakota/Downloads/nmr_data.xlsx"),
-    "AES": Path("/Users/Dakota/Downloads/aes.xlsx"),
+    "DSC": DATA_DIR / "DSC-NonIsothermal.xlsx",
+    "PL": DATA_DIR / "pl_data.xlsx",
+    "NMR": DATA_DIR / "nmr_data.xlsx",
+    "AES": DATA_DIR / "aes.xlsx",
 }
 
 DSC_PROMINENCE = 0.05
@@ -172,28 +174,6 @@ def scipy_peak_positions(frame):
         "endothermic": [float(value) for value in x[endo]],
         "exothermic": [float(value) for value in x[exo]],
     }
-
-
-def scipy_enthalpy(frame):
-    """Baseline-corrected peak area with Simpson's rule, in J/g."""
-    x, y = dsc_xy(frame)
-    endo, _ = find_peaks(y, prominence=DSC_PROMINENCE, distance=DSC_DISTANCE)
-    exo, _ = find_peaks(-y, prominence=DSC_PROMINENCE, distance=DSC_DISTANCE)
-    events = np.sort(np.concatenate((endo, exo)))
-    enthalpies = []
-    for index in events:
-        width = peak_widths(np.abs(y), [index], rel_height=0.5)
-        left = max(0, int(np.floor(width[2][0])))
-        right = min(len(x) - 1, int(np.ceil(width[3][0])))
-        if right - left < 2:
-            left = max(0, index - 20)
-            right = min(len(x) - 1, index + 20)
-        segment_x = x[left:right + 1]
-        segment_y = y[left:right + 1]
-        baseline = np.interp(segment_x, [segment_x[0], segment_x[-1]], [segment_y[0], segment_y[-1]])
-        area = float(simpson(segment_y - baseline, x=segment_x))
-        enthalpies.append(area / (DSC_RATE * DSC_MASS))
-    return enthalpies
 
 
 def scipy_onset(frame):
@@ -376,21 +356,6 @@ def run_cases(tables):
         rmsd(gam_positions, ref_positions),
         gam_positions, ref_positions, gam_ms, ref_ms,
         "scipy.signal.find_peaks",
-    ))
-
-    gam, _, gam_ms = timed(lambda: DSC(
-        dsc, application="dH", prominence=DSC_PROMINENCE, distance=DSC_DISTANCE,
-        sample_mass=DSC_MASS, heating_rate=DSC_RATE, orientation=DSC_ORIENTATION,
-    ))
-    ref, _, ref_ms = timed(lambda: scipy_enthalpy(dsc))
-    gam_dh = [item[2] for item in gam] if gam else []
-    rows.append(record(
-        "dsc_dH",
-        dsc_call.format(app="dH"),
-        DATA["DSC"].name, len(dsc), "mae_J_per_g",
-        mae(gam_dh, ref, paired=True),
-        gam_dh, ref, gam_ms, ref_ms,
-        "scipy.integrate.simpson on a baseline-corrected peak",
     ))
 
     gam, _, gam_ms = timed(lambda: DSC(

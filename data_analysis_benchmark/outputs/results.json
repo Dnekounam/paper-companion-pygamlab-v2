@@ -1,10 +1,10 @@
 {
-  "pygamlab_version": "2.0.1",
+  "pygamlab_version": "2.0.0",
   "datasets": {
-    "DSC": "/Users/Dakota/Downloads/DSC-NonIsothermal.xlsx",
-    "PL": "/Users/Dakota/Downloads/pl_data.xlsx",
-    "NMR": "/Users/Dakota/Downloads/nmr_data.xlsx",
-    "AES": "/Users/Dakota/Downloads/aes.xlsx"
+    "DSC": "/Users/apm/Desktop/MAIN/GamLab/Pygamlab_v1_v2 all/Pygamlab_development_V2/Data Analysis/Functions/DSC-NonIsothermal.xlsx",
+    "PL": "/Users/apm/Desktop/MAIN/GamLab/Pygamlab_v1_v2 all/Pygamlab_development_V2/Data Analysis/Functions/pl_data.xlsx",
+    "NMR": "/Users/apm/Desktop/MAIN/GamLab/Pygamlab_v1_v2 all/Pygamlab_development_V2/Data Analysis/Functions/nmr_data.xlsx",
+    "AES": "/Users/apm/Desktop/MAIN/GamLab/Pygamlab_v1_v2 all/Pygamlab_development_V2/Data Analysis/Functions/aes.xlsx"
   },
   "accuracy_metrics": [
     "absolute_error",
@@ -26,8 +26,8 @@
       "error": 0.0,
       "pygamlab_value": 60.0347,
       "scipy_value": 60.0347,
-      "time_pygamlab_ms": 3.381,
-      "time_scipy_ms": 0.032,
+      "time_pygamlab_ms": 3.547,
+      "time_scipy_ms": 0.033,
       "scipy_method": "numpy.gradient max |dy/dx|"
     },
     {
@@ -39,8 +39,8 @@
       "error": 0.0,
       "pygamlab_value": 91.4084,
       "scipy_value": 91.4084,
-      "time_pygamlab_ms": 2.817,
-      "time_scipy_ms": 0.031,
+      "time_pygamlab_ms": 3.228,
+      "time_scipy_ms": 0.035,
       "scipy_method": "scipy.signal.find_peaks"
     },
     {
@@ -52,8 +52,8 @@
       "error": 0.0,
       "pygamlab_value": 61.4966,
       "scipy_value": 61.4966,
-      "time_pygamlab_ms": 2.969,
-      "time_scipy_ms": 0.032,
+      "time_pygamlab_ms": 3.088,
+      "time_scipy_ms": 0.036,
       "scipy_method": "scipy.signal.find_peaks"
     },
     {
@@ -77,34 +77,9 @@
         102.401,
         219.181
       ],
-      "time_pygamlab_ms": 2.99,
-      "time_scipy_ms": 0.053,
+      "time_pygamlab_ms": 3.645,
+      "time_scipy_ms": 0.06,
       "scipy_method": "scipy.signal.find_peaks"
-    },
-    {
-      "task": "dsc_dH",
-      "reference": "DSC(dsc_data, application='dH', prominence=0.05, distance=20, sample_mass=1.0, heating_rate=1.0, orientation='endo_up')",
-      "dataset": "DSC-NonIsothermal.xlsx",
-      "n_points": 1599,
-      "accuracy_metric": "mae_J_per_g",
-      "error": 15.980263,
-      "pygamlab_value": [
-        -28.286668343000017,
-        -17.429924519999986,
-        -17.940100470500024,
-        -4.614613777999998,
-        -19.52374513500006
-      ],
-      "scipy_value": [
-        -5.389291384257125,
-        0.16370571167791464,
-        -0.4289811360432866,
-        0.13511654990197322,
-        -2.3742877754173297
-      ],
-      "time_pygamlab_ms": 5.253,
-      "time_scipy_ms": 0.241,
-      "scipy_method": "scipy.integrate.simpson on a baseline-corrected peak"
     },
     {
       "task": "dsc_kinetics",
@@ -123,8 +98,8 @@
         93.7404,
         216.849
       ],
-      "time_pygamlab_ms": 5.878,
-      "time_scipy_ms": 0.068,
+      "time_pygamlab_ms": 6.779,
+      "time_scipy_ms": 0.075,
       "scipy_method": "onset at 5% of peak height above the local baseline"
     },
     {
@@ -136,8 +111,8 @@
       "error": 0.0,
       "pygamlab_value": 575.0700073,
       "scipy_value": 575.0700073,
-      "time_pygamlab_ms": 2.9,
-      "time_scipy_ms": 0.02,
+      "time_pygamlab_ms": 3.401,
+      "time_scipy_ms": 0.023,
       "scipy_method": "scipy.signal.find_peaks"
     },
     {
@@ -149,8 +124,8 @@
       "error": 0.0,
       "pygamlab_value": 16.4718647,
       "scipy_value": 16.4718647,
-      "time_pygamlab_ms": 19.562,
-      "time_scipy_ms": 0.02,
+      "time_pygamlab_ms": 18.814,
+      "time_scipy_ms": 0.023,
       "scipy_method": "scipy.signal.find_peaks"
     },
     {
@@ -162,8 +137,8 @@
       "error": 0.001493,
       "pygamlab_value": 2.157476991196855,
       "scipy_value": 2.1559844342311654,
-      "time_pygamlab_ms": 15.432,
-      "time_scipy_ms": 0.02,
+      "time_pygamlab_ms": 18.117,
+      "time_scipy_ms": 0.023,
       "scipy_method": "scipy.constants h*c/lambda"
     },
     {
@@ -175,8 +150,8 @@
       "error": 93.418822,
       "pygamlab_value": 111.46976132334936,
       "scipy_value": 18.050939477098837,
-      "time_pygamlab_ms": 3.394,
-      "time_scipy_ms": 0.02,
+      "time_pygamlab_ms": 4.018,
+      "time_scipy_ms": 0.023,
       "scipy_method": "scipy.signal.peak_widths"
     },
     {
@@ -194,8 +169,8 @@
         "CompoundA": 0.3481434653773819,
         "CompoundB": 0.6518565346226181
       },
-      "time_pygamlab_ms": 0.313,
-      "time_scipy_ms": 0.289,
+      "time_pygamlab_ms": 0.301,
+      "time_scipy_ms": 0.285,
       "scipy_method": "scipy.integrate.simpson per proton"
     },
     {
@@ -207,8 +182,8 @@
       "error": 0.00301,
       "pygamlab_value": 25.57,
       "scipy_value": 25.566989876311318,
-      "time_pygamlab_ms": 0.28,
-      "time_scipy_ms": 0.271,
+      "time_pygamlab_ms": 0.311,
+      "time_scipy_ms": 0.298,
       "scipy_method": "scipy.integrate.simpson per proton"
     },
     {
@@ -230,8 +205,8 @@
         175.0,
         180.0
       ],
-      "time_pygamlab_ms": 0.084,
-      "time_scipy_ms": 0.016,
+      "time_pygamlab_ms": 0.09,
+      "time_scipy_ms": 0.018,
       "scipy_method": "scipy.signal.find_peaks"
     },
     {
@@ -261,8 +236,8 @@
           "Atomic %": 28.783107026692136
         }
       ],
-      "time_pygamlab_ms": 0.083,
-      "time_scipy_ms": 0.035,
+      "time_pygamlab_ms": 0.086,
+      "time_scipy_ms": 0.04,
       "scipy_method": "scipy.integrate.trapezoid peak area / sensitivity factor"
     }
   ]

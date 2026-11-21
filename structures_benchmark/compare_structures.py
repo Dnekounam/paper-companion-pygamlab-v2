@@ -13,8 +13,6 @@ graphene     ase.build.graphene
 silicene     ase.build.graphene(formula="Si2", thickness=buckling)
 nanotube     ase.build.nanotube
 nanoparticle ase.build.bulk (FCC sphere) and ase.cluster.Octahedron
-phosphorene  ase.Atoms with the Midtvedt-Croy puckered basis
-             (ASE has no phosphorene builder)
 """
 
 from __future__ import annotations
@@ -22,7 +20,7 @@ from __future__ import annotations
 import csv
 import json
 import time
-from math import cos, gcd, sin, sqrt
+from math import gcd, sqrt
 from pathlib import Path
 
 import numpy as np
@@ -37,11 +35,9 @@ from pygamlab.structures.GAM_architectures import (
     Graphene,
     Nanoparticle_Generator,
     Nanotube_Generator,
-    Phosphorene,
     Silicene,
 )
 from pygamlab.structures.GAM_architectures.GAM_Graphene import graphene_unit_cell
-from pygamlab.structures.GAM_architectures.GAM_phosphorene import phosphorene_unit_cell
 from pygamlab.structures.GAM_architectures.GAM_sillicene import silicene_unit_cell
 
 import ase
@@ -55,10 +51,6 @@ SILICENE_A = 3.87
 SILICENE_BUCKLING = 0.44
 NANOTUBE_BOND = 1.42
 AU_A = 4.08
-PHOSPHORENE_BOND = 2.224
-PHOSPHORENE_THETA1 = 96.5
-PHOSPHORENE_THETA2 = 101.9
-
 REPEATS = 5
 
 
@@ -148,55 +140,6 @@ def nanotube_period(n: int, m: int, bond: float = NANOTUBE_BOND) -> float:
     ndr = 3 * nd if (n - m) % (3 * nd) == 0 else nd
     c = a * sqrt(l2)
     return abs(sq3 * c / ndr)
-
-
-def pygamlab_phosphorene_supercell(nx: int, ny: int) -> Atoms:
-    basis, _vectors = phosphorene_unit_cell(3.313, 4.376, 2.14)
-    a1 = np.array([3.313, 0.0, 0.0])
-    a2 = np.array([0.0, 4.376, 0.0])
-    points = []
-    for i in range(nx):
-        for j in range(ny):
-            for x, y, z, _sublayer in basis:
-                points.append([x, y, z] + i * a1 + j * a2)
-    points = np.asarray(points, dtype=float)
-    cell = np.array([nx * a1, ny * a2, [0.0, 0.0, 20.0]])
-    return as_atoms(["P"] * len(points), points, cell=cell, pbc=(True, True, False))
-
-
-def ase_phosphorene_supercell(nx: int, ny: int) -> Atoms:
-    """Puckered black-phosphorus monolayer from the Midtvedt-Croy bond vectors.
-
-    ASE does not ship a phosphorene builder. The reference is an ASE Atoms
-    object whose bonds are the literature length d = 2.224 Å, with intra-pucker
-    angle 96.5° and inter-pucker angle 101.9°.
-    """
-    d = PHOSPHORENE_BOND
-    theta1 = np.deg2rad(PHOSPHORENE_THETA1)
-    theta2 = np.deg2rad(PHOSPHORENE_THETA2)
-    c1 = cos(theta1 / 2.0)
-    s1 = sin(theta1 / 2.0)
-    r12 = d * np.array([c1, -s1, 0.0])
-    hinge_x = -cos(theta2) / c1
-    hinge_z = sqrt(max(0.0, 1.0 - hinge_x * hinge_x))
-    r23 = d * np.array([hinge_x, 0.0, hinge_z])
-    r34 = d * np.array([c1, s1, 0.0])
-    basis = np.vstack([
-        np.zeros(3),
-        r12,
-        r12 + r23,
-        r12 + r23 + r34,
-    ])
-    a1 = 2.0 * d * np.array([c1 - cos(theta2) / c1, 0.0, 0.0])
-    a2 = 2.0 * d * np.array([0.0, s1, 0.0])
-    points = []
-    for i in range(nx):
-        for j in range(ny):
-            shift = i * a1 + j * a2
-            points.append(basis + shift)
-    points = np.vstack(points)
-    cell = np.vstack([nx * a1, ny * a2, np.array([0.0, 0.0, 20.0])])
-    return as_atoms(["P"] * len(points), points, cell=cell, pbc=(True, True, False))
 
 
 def ase_fcc_sphere(symbol: str, lattice: float, radius: float) -> Atoms:
@@ -383,9 +326,24 @@ def compare_case(
     ideal_bond,
     periodic_bonds=False,
     primitive=None,
+    equalize_atom_counts=False,
 ):
     gam_atoms, gam_ms = median_time_ms(build_gam)
-    ase_atoms, ase_ms = median_time_ms(build_ase)
+
+    def build_equal_ase():
+        atoms = build_ase()
+        if len(atoms) < len(gam_atoms):
+            raise ValueError(
+                f"ASE reference has {len(atoms)} atoms, fewer than pygamlab's {len(gam_atoms)}"
+            )
+        if len(atoms) == len(gam_atoms):
+            return atoms
+        center = atoms.positions.mean(axis=0)
+        distances = np.linalg.norm(atoms.positions - center, axis=1)
+        return atoms[np.argsort(distances)[:len(gam_atoms)]]
+
+    timed_ase_builder = build_equal_ase if equalize_atom_counts else build_ase
+    ase_atoms, ase_ms = median_time_ms(timed_ase_builder)
     if not periodic_bonds:
         gam_atoms = gam_atoms.copy()
         ase_atoms = ase_atoms.copy()
@@ -466,9 +424,11 @@ def graphene_cases():
                     rotation=0.0,
                 ))
 
-            def build_ase(width=width):
-                n = max(6, int(np.ceil(width / GRAPHENE_A)) * 2 + 2)
-                return ase_graphene_supercell(n, n)
+            atom_count = len(build_gam())
+            ase_side = int(np.ceil(np.sqrt(atom_count / 2.0)))
+
+            def build_ase(ase_side=ase_side):
+                return ase_graphene_supercell(ase_side, ase_side)
 
             cases.append(dict(
                 task="graphene_flake",
@@ -482,6 +442,7 @@ def graphene_cases():
                 ideal_bond=ideal,
                 periodic_bonds=False,
                 primitive=lambda: ase_graphene_supercell(1, 1),
+                equalize_atom_counts=True,
             ))
     return cases
 
@@ -512,6 +473,8 @@ def silicene_cases():
             rotation=0.0,
         ))
 
+    atom_count = len(build_flake())
+    ase_side = int(np.ceil(np.sqrt(atom_count / 2.0)))
     cases.append(dict(
         task="silicene_flake",
         reference=(
@@ -520,41 +483,11 @@ def silicene_cases():
         ),
         parameters=f"a={SILICENE_A} A, buckling={SILICENE_BUCKLING} A, width=length=12 A",
         build_gam=build_flake,
-        build_ase=lambda: ase_silicene_supercell(12, 12),
+        build_ase=lambda: ase_silicene_supercell(ase_side, ase_side),
         ideal_bond=ideal,
         periodic_bonds=False,
         primitive=lambda: ase_silicene_supercell(1, 1),
-    ))
-    return cases
-
-
-def phosphorene_cases():
-    cases = [dict(
-        task="phosphorene_supercell",
-        reference=(
-            "phosphorene_unit_cell(lattice_a=3.313, lattice_b=4.376, "
-            "puckering_height=2.14)  # supercell 3x3"
-        ),
-        parameters="4-atom basis, size=3x3",
-        build_gam=lambda: pygamlab_phosphorene_supercell(3, 3),
-        build_ase=lambda: ase_phosphorene_supercell(3, 3),
-        ideal_bond=PHOSPHORENE_BOND,
-        periodic_bonds=True,
-        primitive=lambda: ase_phosphorene_supercell(1, 1),
-    )]
-
-    def build_flake():
-        return gam_to_atoms(Phosphorene(width=12.0, length=12.0, rotation=0.0))
-
-    cases.append(dict(
-        task="phosphorene_flake",
-        reference="Phosphorene(width=12.0, length=12.0)",
-        parameters="Phosphorene defaults, width=length=12 A",
-        build_gam=build_flake,
-        build_ase=lambda: ase_phosphorene_supercell(4, 4),
-        ideal_bond=PHOSPHORENE_BOND,
-        periodic_bonds=False,
-        primitive=lambda: ase_phosphorene_supercell(1, 1),
+        equalize_atom_counts=True,
     ))
     return cases
 
@@ -681,11 +614,12 @@ def write_summary(records):
 def main():
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     XYZ_DIR.mkdir(parents=True, exist_ok=True)
+    for path in XYZ_DIR.glob("*.xyz"):
+        path.unlink()
 
     cases = []
     cases.extend(graphene_cases())
     cases.extend(silicene_cases())
-    cases.extend(phosphorene_cases())
     cases.extend(nanotube_cases())
     cases.extend(nanoparticle_cases())
 

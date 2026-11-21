@@ -1,5 +1,5 @@
 pygamlab data analysis vs SciPy
-pygamlab 2.0.1    SciPy constants 6.626070e-34 J s
+pygamlab 2.0.0    SciPy constants 6.626070e-34 J s
 
 Accuracy: |pygamlab - SciPy| for one number, RMSD or MAE when a task returns several.
 Performance: median call time after one warmup, and number of data rows.
@@ -7,17 +7,16 @@ DSC orientation is endo_up. NMR regions are the strong peaks between -116 and -1
 
 task                            n metric                          error   t_gam_ms t_scipy_ms  reference
 --------------------------------------------------------------------------------------------------------
-dsc_Tg                       1599 absolute_error_C                    0      3.381      0.032  DSC(dsc_data, application='Tg', prominence=0.05, distance=20, sample_mass=1.0, heating_rate=1.0, orientation='endo_up')
-dsc_Tm                       1599 absolute_error_C                    0      2.817      0.031  DSC(dsc_data, application='Tm', prominence=0.05, distance=20, sample_mass=1.0, heating_rate=1.0, orientation='endo_up')
-dsc_Tc                       1599 absolute_error_C                    0      2.969      0.032  DSC(dsc_data, application='Tc', prominence=0.05, distance=20, sample_mass=1.0, heating_rate=1.0, orientation='endo_up')
-dsc_peak_detection           1599 rmsd_C                              0      2.990      0.053  DSC(dsc_data, application='peak_detection', prominence=0.05, distance=20, sample_mass=1.0, heating_rate=1.0, orientation='endo_up')
-dsc_dH                       1599 mae_J_per_g                   15.9803      5.253      0.241  DSC(dsc_data, application='dH', prominence=0.05, distance=20, sample_mass=1.0, heating_rate=1.0, orientation='endo_up')
-dsc_kinetics                 1599 mae_onset_C                   2.27587      5.878      0.068  DSC(dsc_data, application='kinetics', prominence=0.05, distance=20, sample_mass=1.0, heating_rate=1.0, orientation='endo_up')
-pl_peak_position              401 absolute_error_nm                   0      2.900      0.020  Photoluminescence_analysis(pl_data, application='peak_position')
-pl_peak_intensity             401 absolute_error                      0     19.562      0.020  Photoluminescence_analysis(pl_data, application='peak_intensity')
-pl_bandgap                    401 absolute_error_eV            0.001493     15.432      0.020  Photoluminescence_analysis(pl_data, application='bandgap_energy')
-pl_fwhm                       401 absolute_error_nm             93.4188      3.394      0.020  Photoluminescence_analysis(pl_data, application='fwhm')
-nmr_mixture_composition      1991 mae_mole_fraction            0.001857      0.313      0.289  NMR_Analysis(nmr_data, application='mixture_composition', peak_info={'CompoundA': {'region': (-116.0, -114.5), 'protons': 2}, 'CompoundB': {'region': (-111.8, -110.6), 'protons': 1}})
-nmr_impurity                 1991 absolute_error_percent        0.00301      0.280      0.271  NMR_Analysis(nmr_data, application='calculate_impurity', peak_info={'main_compound': {'region': (-111.8, -110.6), 'protons': 1}, 'impurity': {'region': (-107.3, -106.2), 'protons': 1}})
-aes_peak_position              41 rmsd_eV                             0      0.084      0.016  Auger_Electron_Spectroscopy_analysis(aes_data, application='peak_position')
-aes_atomic                     41 mae_atomic_percent            1.31058      0.083      0.035  Auger_Electron_Spectroscopy_analysis(aes_data, application='atomic', sensitivity_factors={'C': 0.25, 'O': 0.66})
+dsc_Tg                       1599 absolute_error_C                    0      3.547      0.033  DSC(dsc_data, application='Tg', prominence=0.05, distance=20, sample_mass=1.0, heating_rate=1.0, orientation='endo_up')
+dsc_Tm                       1599 absolute_error_C                    0      3.228      0.035  DSC(dsc_data, application='Tm', prominence=0.05, distance=20, sample_mass=1.0, heating_rate=1.0, orientation='endo_up')
+dsc_Tc                       1599 absolute_error_C                    0      3.088      0.036  DSC(dsc_data, application='Tc', prominence=0.05, distance=20, sample_mass=1.0, heating_rate=1.0, orientation='endo_up')
+dsc_peak_detection           1599 rmsd_C                              0      3.645      0.060  DSC(dsc_data, application='peak_detection', prominence=0.05, distance=20, sample_mass=1.0, heating_rate=1.0, orientation='endo_up')
+dsc_kinetics                 1599 mae_onset_C                   2.27587      6.779      0.075  DSC(dsc_data, application='kinetics', prominence=0.05, distance=20, sample_mass=1.0, heating_rate=1.0, orientation='endo_up')
+pl_peak_position              401 absolute_error_nm                   0      3.401      0.023  Photoluminescence_analysis(pl_data, application='peak_position')
+pl_peak_intensity             401 absolute_error                      0     18.814      0.023  Photoluminescence_analysis(pl_data, application='peak_intensity')
+pl_bandgap                    401 absolute_error_eV            0.001493     18.117      0.023  Photoluminescence_analysis(pl_data, application='bandgap_energy')
+pl_fwhm                       401 absolute_error_nm             93.4188      4.018      0.023  Photoluminescence_analysis(pl_data, application='fwhm')
+nmr_mixture_composition      1991 mae_mole_fraction            0.001857      0.301      0.285  NMR_Analysis(nmr_data, application='mixture_composition', peak_info={'CompoundA': {'region': (-116.0, -114.5), 'protons': 2}, 'CompoundB': {'region': (-111.8, -110.6), 'protons': 1}})
+nmr_impurity                 1991 absolute_error_percent        0.00301      0.311      0.298  NMR_Analysis(nmr_data, application='calculate_impurity', peak_info={'main_compound': {'region': (-111.8, -110.6), 'protons': 1}, 'impurity': {'region': (-107.3, -106.2), 'protons': 1}})
+aes_peak_position              41 rmsd_eV                             0      0.090      0.018  Auger_Electron_Spectroscopy_analysis(aes_data, application='peak_position')
+aes_atomic                     41 mae_atomic_percent            1.31058      0.086      0.040  Auger_Electron_Spectroscopy_analysis(aes_data, application='atomic', sensitivity_factors={'C': 0.25, 'O': 0.66})
