@@ -43,7 +43,7 @@ plt.show = lambda *args, **kwargs: plt.close("all")
 warnings.filterwarnings("ignore")
 
 OUT_DIR = Path(__file__).resolve().parent / "outputs"
-DATA_PATH = Path("/Users/Dakota/Downloads/chemical_congress.xlsx")
+DATA_PATH = Path(__file__).resolve().parent / "chemical_congress.xlsx"
 CV = 5
 FEATURES = ["Mw", "Melting point", "density", "HBD", "HBA"]
 TARGET = "solubility"
