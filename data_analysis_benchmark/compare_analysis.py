@@ -18,7 +18,6 @@ from __future__ import annotations
 import csv
 import io
 import json
-import os
 import time
 import warnings
 from contextlib import redirect_stdout
@@ -50,7 +49,7 @@ from scipy.spatial.distance import cdist
 plt.show = lambda *args, **kwargs: plt.close("all")
 
 OUT_DIR = Path(__file__).resolve().parent / "outputs"
-DATA_DIR = Path(os.environ.get("PYGAMLAB_BENCHMARK_DATA_DIR", "/Users/Dakota/Downloads"))
+DATA_DIR = Path(__file__).resolve().parent
 DATA = {
     "DSC": DATA_DIR / "DSC-NonIsothermal.xlsx",
     "PL": DATA_DIR / "pl_data.xlsx",
